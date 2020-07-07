@@ -1,0 +1,108 @@
+html{
+
+}
+
+body{
+	min-height: 100vh !important;
+}
+
+
+
+
+
+
+
+
+/* HOME PAGE */
+
+
+#homepage-body{
+	background: url("../content/default/loginimg1.jpg");
+  	background-repeat: no-repeat;
+  	background-size: cover;
+}
+
+#homepage-login{
+	background-color:#ffffff;
+	max-width:300px;
+	position: fixed; 
+	top: 50%;
+  	left: 50%;
+  	/* bring your own prefixes */
+  	transform: translate(-50%, -50%);
+  	padding:20px 20px;
+}
+
+#homepage-login input, #homepage-login button{
+	margin-top:20px;
+}
+
+#homepage-serverResponse{
+	padding:5px;
+	text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* SIGN UP PAGE */
+
+#signup-maindiv{
+	background-color:#ffffff;
+	max-width:500px;
+	position: fixed; 
+	top: 50%;
+  	left: 50%;
+  	/* bring your own prefixes */
+  	transform: translate(-50%, -50%);
+  	padding:20px 20px;
+}
+
+#signup-maindiv input, #signup-maindiv button{
+	margin-top:20px;
+}
+
+#signup-password-error{
+	padding:5px;
+	text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* DASHBOARD PAGE */
+
+/*header{
+	width: 100vw !important;
+	height:50px;
+}
+*/
+/*#header-logo{float:left;}
+
+#header-logout{float:right;}*/
+
+#dashboard-sidebar{
+	width:20vw;
+	float:left;
+	background-color:#f0f0f0;
+	height:100vh;
+}
+
+#dashboard-main{
+	float:left;
+}
