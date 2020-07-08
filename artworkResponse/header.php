@@ -12,7 +12,10 @@ session_start();
 		<!-- UIkit JS -->
 		<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
-		<title></title>
+
+		<!-- Font Awesome -->
+		<script src="https://use.fontawesome.com/ca64a5da55.js"></script>
+		<title>Response</title>
 	</head>
 		<!-- Logout button -->
 		<?php if(isset($_SESSION['userID'])){ ?>

@@ -45,7 +45,7 @@ if(isset($_POST['signup-submit'])){
 					$approvedValue = 0;
 					mysqli_stmt_bind_param($stmt,"ssssi",$firstname,$lastname,$email,$pwdhash,$approvedValue);
 					mysqli_stmt_execute($stmt);
-					header("Location: ../../signup.php?signup=sucess");
+					header("Location: ../../index.php?signup=sucess");
 					exit();
 				}
 			}

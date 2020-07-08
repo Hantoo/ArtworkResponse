@@ -3,7 +3,6 @@
 ?>
 	<script>
 		function checkValuesAgainstEachOther(value1, value2){
-			console.log("test");
 			if(value1 == value2){
 				document.getElementById("signup-password-error").innerHTML = "Passwords Match!";
 				document.getElementById("signup-password-error").classList.remove("uk-alert-danger");
@@ -36,7 +35,7 @@
 				}
 				if(isset($_GET['signup'])){
 					if($_GET['signup'] == "sucess"){
-						$msg = "User Sucessfully Created. Please Await Approval.";
+						$msg = "User Sucessfully Created. Awaiting Approval From Admin.";
 					}
 					echo "<p id='homepage-serverResponse' class='uk-alert-success'>".$msg."</p>";
 				}

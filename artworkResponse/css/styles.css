@@ -7,6 +7,29 @@ body{
 }
 
 
+/* VARIABLES */
+
+:root {
+  --main-color: #007ea8;
+  
+  --primary-color-h: 197;
+  --primary-color-s: 100%;
+  --primary-color-l: 47%;
+
+  /*  Calculations Based on Lightness  */
+  --lightnessTransform: 10%;
+  --darknessTransform: 15%;
+  --primary-color-light-l: calc(var(--primary-color-l) + var(--lightnessTransform));
+  --primary-color-dark-l: calc(var(--primary-color-l) - var(--darknessTransform));
+
+  --color-primary: hsl(var(--primary-color-h),
+                       var(--primary-color-s),
+                       var(--primary-color-l));
+  --color-primary-dark:hsl(var(--primary-color-h),
+                       var(--primary-color-s),
+                       var(--primary-color-dark-l));
+
+}
 
 
 
@@ -99,10 +122,97 @@ body{
 #dashboard-sidebar{
 	width:20vw;
 	float:left;
-	background-color:#f0f0f0;
+	background-color:#383838;
+	/*background-color:var(--color-primary);*/
 	height:100vh;
 }
 
+#dashboard-sidebar ul{
+	padding: 20px 20px;
+}
+#dashboard-sidebar li{
+	/*background-color:var(--color-primary-dark);*/
+	  
+}
+
+#header-logout button{
+	width:100%;
+	transition: all 0.2s ease-in-out;
+}
+
+#header-logout button:hover{
+	background-color:#a8a8a8;
+	color:#ffffff;
+	
+}
+
+#dashboard-sidebar .uk-active a{
+	color:#ffffff !important;
+}
+
+#dashboard-sidebar .uk-nav-sub
+{
+	background-color: #2f2f2f;
+}
+
 #dashboard-main{
-	float:left;
+	display:block;
+}
+
+#dashboard-main table{
+	display:block;
+}
+
+#centeredDiv {
+	display:table;
+}
+#users-row:hover{
+	background-color:#dcdcdc;
+}
+
+
+
+
+
+/*    PROJECT OVERVIEW      */
+
+#projectOverview-status-online{
+	color:#00d624;
+}
+
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
 }

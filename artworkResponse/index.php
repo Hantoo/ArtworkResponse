@@ -28,6 +28,8 @@
 						$msg = "Password Is Incorrect";
 					}else if($_GET['error'] == "usernotapproved"){
 						$msg = "User Awaiting Approval";
+					}if($_GET['error'] == "nouser"){
+						$msg = "User Doesn't Exist";
 					}
 					echo "<p id='homepage-serverResponse' class='uk-alert-danger'>".$msg."</p>";
 				}
