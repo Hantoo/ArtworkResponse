@@ -18,10 +18,12 @@ Viewing a project allows you to add custom feilds to the project and view any re
 There are a few things you need to do to set this up.
 * Ensure you have a server that is running MYSQL.
 * Go to the artworkResponse > includes > artworkResponse > dbh.inc.php file and alter the 4 variables at the top to connect to your server. These variables are:
+``
     $serverName = "localhost"; // Ip address to website - must be public IP
     $dbUsername = "root";      // Username to mysql server
     $dbPassword = "";          // Password to mysql server
     $dbName = "artwork";       // Database name
+``
 * Once you've changed these variables to the correct infomation, load up the website and type a random email and password into the signin form. this will automatically tigger the creation of the tables needed to run this and a user with the username "root@root.com" and the password "" to log in with.
 
 ## Unity3D Usage
@@ -64,4 +66,3 @@ To be able to insert data into the SQL table, you will need to copy and paste th
 ![](ReadMe_Assets/response_projectview2.PNG)
   
 ![](ReadMe_Assets/response_projectview3.PNG)  
-  
