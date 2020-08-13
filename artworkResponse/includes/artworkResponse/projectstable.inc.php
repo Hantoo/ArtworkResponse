@@ -4,33 +4,147 @@ require 'dbh.inc.php';
 if(isset($_POST['projectoverview-addproject-submit'])){
 
 	//Make Project
-
-	
-
 	$pname = $_POST['projectName'];
 	$pcode = $_POST['projectCode'];
+	$pdesc = $_POST['projectDesc'];
+	$pgithub = $_POST['projectGitLink'];
+	$plongitude = $_POST['projectLocationLongitude'];
+	$platitude = $_POST['projectLocationLatitude'];
 	$pstatus = $_POST['projectStatustext'];
+	$pclient = $_POST['projectClient'];
+	$pmaintanceperiod = $_POST['projectMainenancePeriod'];
+	$pbg = $_POST['projectBGLink'];
+	/*$pteammembers = $_POST['projectTeamMembers'];*/
 
 		$sql = "INSERT into projects (projectCode,name,status) VALUES (?,?,?)";
 		$stmt = mysqli_stmt_init($conn);
 		if(!mysqli_stmt_prepare($stmt, $sql)){
-			header("Location: ../../signup.php?error=sqlerror");
+			header("Location: ../../projectOverview.php?error=sqlerror");
 			exit();
 		}else {
-			$pwdhash = password_hash($pwd, PASSWORD_DEFAULT);
-			$approvedValue = 0;
-			mysqli_stmt_bind_param($stmt,"sss",$pname,$pcode,$pstatus);
+			
+			mysqli_stmt_bind_param($stmt,"sss",$pcode,$pname,$pstatus);
 			mysqli_stmt_execute($stmt);
-			header("Location: ../../projectOverview.php?project=addsucess");
-			exit();
+			
+			$sql = 'SELECT * FROM projects WHERE projectCode=\''.$pcode.'\'';
+         	$result = mysqli_query($conn, $sql);
+         	$IDnum = -1;
+         	if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+               $IDnum = $row["unqiueID"];
+	            }
+	         } else {
+	            header("Location: ../../projectOverview.php?error=sqlerror&desc=NoUnquieIDFound");
+				exit();
+	         }
+			
+
+			$sql = "INSERT into projectdetails (projectID,clientName,customDataTableName,githubURL,maintancePeriod, projectDescription, projectLatitude, projectLongitude, projectBackgroundURL,uniqueProjectKey) VALUES (?,?,?,?,?,?,?,?,?,?)";
+			
+			if(!mysqli_stmt_prepare($stmt, $sql)){
+				header("Location: ../../projectOverview.php?error=sqlerror");
+				exit();
+			}else {
+				
+				$dattablename = $pcode."_data";
+				$keyGen = keygen(20);
+				mysqli_stmt_bind_param($stmt,"isssisddss",$IDnum,$pclient,$dattablename,$pgithub,$pmaintanceperiod,$pdesc,$platitude,$plongitude,$pbg,$keyGen);
+				mysqli_stmt_execute($stmt);
+				
+				$sql = "CREATE TABLE ".$dattablename."(entryID int(12) PRIMARY KEY AUTO_INCREMENT NOT NULL, entryDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)";
+			
+				if(!mysqli_stmt_prepare($stmt, $sql)){
+					header("Location: ../../projectOverview.php?error=sqlerror");
+					exit();
+				}else {
+					
+					mysqli_stmt_execute($stmt);
+					header("Location: ../../projectOverview.php?sucess=true");
+					exit();
+				}
+				
+			}
+
 		}
 		
+		//If user is updating their project from within the project view page
+	}else if(isset($_POST['projectoverview-updateproject-submit'])){
+
+	$pid = $_POST['projectID'];
+	$pname = $_POST['projectName'];
+	$pcode = $_POST['projectCode'];
+	$pdesc = $_POST['projectDesc'];
+	$pgithub = $_POST['projectGitLink'];
+	$plongitude = $_POST['projectLocationLongitude'];
+	$platitude = $_POST['projectLocationLatitude'];
+	$pstatus = $_POST['projectStatustext'];
+	$pclient = $_POST['projectClient'];
+	$pmaintanceperiod = $_POST['projectMainenancePeriod'];
+	$pbg = $_POST['projectBGLink'];
+	/*$pteammembers = $_POST['projectTeamMembers'];*/
+
+		$sql = "UPDATE projects SET name=?,status=? WHERE unqiueID=?";
+		$stmt = mysqli_stmt_init($conn);
+		if(!mysqli_stmt_prepare($stmt, $sql)){
+			header("Location: ../../projectview.php?project=".$pid."&error=sqlerror1");
+			exit();
+		}else {
+			
+			mysqli_stmt_bind_param($stmt,"ssi",$pname,$pstatus, $pid);
+			mysqli_stmt_execute($stmt);
+						
+			$sql = "UPDATE projectdetails SET clientName=?,githubURL=?,maintancePeriod=?, projectDescription=?, projectLatitude=?, projectLongitude=?, projectBackgroundURL=? WHERE projectID=?";
+			
+			if(!mysqli_stmt_prepare($stmt, $sql)){
+				header("Location: ../../projectview.php?project=".$pid."&error=sqlerror2");
+				exit();
+			}else {
+				
+				$dattablename = $pcode."_data";
+				mysqli_stmt_bind_param($stmt,"ssisddsi",$pclient,$pgithub,$pmaintanceperiod,$pdesc,$platitude,$plongitude,$pbg,$pid);
+				mysqli_stmt_execute($stmt);
+				header("Location: ../../projectview.php?project=".$pid."&sucess=true");
+				exit();
+			}
+
+		}
+
+	}else if(isset($_POST['projectoverview-updateproject-delete'])){
+		$pid1 = $_POST['projectID'];
+		$pid2 = $_POST['projectID'];
+		$stmt = mysqli_stmt_init($conn);
+		$sql = "DELETE FROM projectdetails WHERE projectID=?";
+		
+		if(!mysqli_stmt_prepare($stmt, $sql)){
+			header("Location: ../../projectview.php?project=".$pid1."&error=sqlerror1");
+			exit();
+		}else {
+			
+			mysqli_stmt_bind_param($stmt,"i", $pid1);
+			mysqli_stmt_execute($stmt);
+
+			$sql = "DELETE FROM projects WHERE unqiueID=?";
+			
+			if(!mysqli_stmt_prepare($stmt, $sql)){
+				header("Location: ../../projectview.php?project=".$pid2."&error=sqlerror2");
+				exit();
+			}else {
+				
+				mysqli_stmt_bind_param($stmt,"i", $pid2);
+				mysqli_stmt_execute($stmt);
+				header("Location: ../../projectOverview.php?error=projectDeleted1-".$pid2);
+				exit();
+			}
+			header("Location: ../../projectOverview.php?error=projectDeleted2-".$pid2);
+			exit();
+		}
 
 	}else if(isset($_POST['projectOverview-view'])){
 
 
 		header("Location: ../../projectview.php?project=".$_POST['projectOverview-view']);
 		exit();
+
 
 	}else{
 //Generate users table
@@ -74,3 +188,19 @@ if(isset($_POST['projectoverview-addproject-submit'])){
 
 		mysqli_stmt_close($stmt);
 		mysqli_close($conn);
+
+
+function keygen($length=10)
+{
+	$key = '';
+	list($usec, $sec) = explode(' ', microtime());
+	mt_srand((float) $sec + ((float) $usec * 100000));
+	
+   	$inputs = array_merge(range('z','a'),range(0,9),range('A','Z'));
+
+   	for($i=0; $i<$length; $i++)
+	{
+   	    $key .= $inputs{mt_rand(0,61)};
+	}
+	return $key;
+}

@@ -125,6 +125,8 @@ body{
 	background-color:#383838;
 	/*background-color:var(--color-primary);*/
 	height:100vh;
+	position:fixed;
+
 }
 
 #dashboard-sidebar ul{
@@ -157,6 +159,9 @@ body{
 
 #dashboard-main{
 	display:block;
+	width:80%;
+	left: 20%;
+    position: relative	
 }
 
 #dashboard-main table{
@@ -166,10 +171,63 @@ body{
 #centeredDiv {
 	display:table;
 }
+
+
+.mapboxgl-ctrl-logo{
+	display: none !important;
+}
+
+.mapboxgl-ctrl-bottom-right{
+	display:none;
+}
+
+.fa-icon {color: red;}
+
+
+
+
+
 #users-row:hover{
 	background-color:#dcdcdc;
 }
 
+.disable{
+	pointer-events: none;
+    cursor: not-allowed;
+    background-color: #ebebeb !important;
+    color: #bbb !important;
+}
+
+.marker {
+  background-image: url('../content/default/mapbox-icon.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-marker{
+	top: -13px !important; /*Used to make sure that the bottom of the pin is the point that is fixed*/
+}
+
+.marker-notactive{
+	filter:grayscale(1);
+}
+
+.mapboxgl-popup {
+  max-width: 160px;
+}
+
+.mapboxgl-popup h3{
+	font-size: 1rem !important;
+	margin:10px 0px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
 
 
 
@@ -215,4 +273,38 @@ body{
   -ms-animation: rotating 2s linear infinite;
   -o-animation: rotating 2s linear infinite;
   animation: rotating 2s linear infinite;
+}
+
+
+#projectHeaderImg{
+	width:100%;
+	height:300px !important;
+}
+
+#projectView-Header{
+	transform: translateY(-50%);
+    background-color: #ffffff;
+    padding: 10px 40px;
+}
+
+.projectView-Desc{
+	padding:0% 10%;
+	/*display:flex !important;*/
+}
+
+#projectView-Map{
+	object-fit: cover;
+	width:100% ;
+	height:200px !important;
+	max-width:none !important;
+}
+
+.projectView-MainShadow{
+	box-shadow: 0px 13px 15px rgba(0,0,0,.05) !important;
+}
+
+
+#responseDataTable tbody{
+	width: 100%;
+    display: block;
 }
