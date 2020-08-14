@@ -52,17 +52,24 @@ To be able to insert data into the SQL table, you will need to copy and paste th
 # ToDo
 * Make the enabled icons work properly
 * Add widgets - allow user to put in custom javascript to change depending on last 50 responses
+* Remove unused submenus
 
 # Screenshots
 
 ![](ReadMe_Assets/loginscreen.PNG)
+*(Above) The login screen.
   
 ![](ReadMe_Assets/response_projectoverview.png)
-  
+*(Above) The project overview window. 
+
 ![](ReadMe_Assets/response_users.png)
+*(Above) The user screen.
   
 ![](ReadMe_Assets/response_projectview1.png)
+*(Above) A project screen - The top section, showing a map of where the artwork is located and infomation about it.
   
 ![](ReadMe_Assets/response_projectview2.png)
+*(Above) A project screen - Here you define the variables you wish to track.
   
 ![](ReadMe_Assets/response_projectview3.png)  
+*(Above) A project screen - What the default table looks like with infomation in it.
