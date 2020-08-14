@@ -18,6 +18,12 @@
 		<div id="">
 			<h2>dashboard</h2>
 
+			<div>
+				<form action="includes/artworkResponse/dashboard.inc.php" method="post">
+					<button name="refreshPins" class="uk-button uk-button-default">Refresh Pins</button>
+				</form>
+			</div>
+
 		</div>
 	</main>
 		

@@ -53,6 +53,7 @@ To be able to insert data into the SQL table, you will need to copy and paste th
 * Make the enabled icons work properly
 * Add widgets - allow user to put in custom javascript to change depending on last 50 responses
 * Remove unused submenus
+* set the refresh pins button's function (located on the dashboard), to be a cron job instead of user activated.
 
 # Screenshots
 
