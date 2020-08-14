@@ -57,12 +57,12 @@ To be able to insert data into the SQL table, you will need to copy and paste th
 
 ![](ReadMe_Assets/loginscreen.PNG)
   
-![](ReadMe_Assets/response_projectoverview.PNG)
+![](ReadMe_Assets/response_projectoverview.png)
   
-![](ReadMe_Assets/response_users.PNG)
+![](ReadMe_Assets/response_users.png)
   
-![](ReadMe_Assets/response_projectview1.PNG)
+![](ReadMe_Assets/response_projectview1.png)
   
-![](ReadMe_Assets/response_projectview2.PNG)
+![](ReadMe_Assets/response_projectview2.png)
   
-![](ReadMe_Assets/response_projectview3.PNG)  
+![](ReadMe_Assets/response_projectview3.png)  
