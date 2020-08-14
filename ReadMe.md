@@ -18,28 +18,28 @@ Viewing a project allows you to add custom feilds to the project and view any re
 There are a few things you need to do to set this up.
 * Ensure you have a server that is running MYSQL.
 * Go to the artworkResponse > includes > artworkResponse > dbh.inc.php file and alter the 4 variables at the top to connect to your server. These variables are:
-``
-    $serverName = "localhost"; // Ip address to website - must be public IP
-    $dbUsername = "root";      // Username to mysql server
-    $dbPassword = "";          // Password to mysql server
-    $dbName = "artwork";       // Database name
-``
+````
+    $serverName = "localhost"; // Ip address to website - must be public IP  <br/>  
+    $dbUsername = "root";      // Username to mysql server    
+    $dbPassword = "";          // Password to mysql server    
+    $dbName = "artwork";       // Database name    
+````
 * Once you've changed these variables to the correct infomation, load up the website and type a random email and password into the signin form. this will automatically tigger the creation of the tables needed to run this and a user with the username "root@root.com" and the password "root" to log in with.
 
 ## Unity3D Usage
 To use with Unity3D import the package into your project and attach the *'ArtworkResponseClient'* script to an empty gameObject. You only need one of these per the project.
 There are two functions within this script which you will want to use: *insertIntoData* and *sendData*. The insertIntoData function will format the value you have put into the correct formatting to be passed into the SQL database. The sendData function will compile all the data into the URL to insert the data into the SQL table.
 
-        //Get Component
-        ArtworkResponseClient art = GetComponent<ArtworkResponseClient>();
-        
-        //Format Data
-        string[] data = art.insertIntoData(3, 0);
-        data = art.insertIntoData(7, 1, data);
-        data = art.insertIntoData("Hello Earth", 2, data);
-        
-        //Send Data
-        GetComponent<ArtworkResponseClient>().sendData(data);    
+        //Get Component  
+        ArtworkResponseClient art = GetComponent<ArtworkResponseClient>();  
+          
+        //Format Data  
+        string[] data = art.insertIntoData(3, 0);  
+        data = art.insertIntoData(7, 1, data);  
+        data = art.insertIntoData("Hello Earth", 2, data);  
+          
+        //Send Data  
+        GetComponent<ArtworkResponseClient>().sendData(data);      
 
 You are only able to send the amount of data which has been userdefined. I.e. every project comes with a entryID and entryTime which are auto generated in the SQL database. You only need a string array the size of the user defined columns, such as Data1, Data2, Data3. The names of the feilds which are being inserted into are gotten automatically from the SQL database when you reload the projects via the inspector. 
 To be able to insert data into the SQL table, you will need to copy and paste the uniqueKey for the project from the site and paste it into the feild within the inspector. Since this is only a monitoring application and does not control the artwork, the uniqueKey is passed to the server via the URL and not a POST method.  
