@@ -17,6 +17,7 @@ Viewing a project allows you to add custom feilds to the project and view any re
 
 There are a few things you need to do to set this up.
 * Ensure you have a server that is running MYSQL.
+* Create a Mapbox.com account.
 * Go to the artworkResponse > includes > artworkResponse > dbh.inc.php file and alter the 4 variables at the top to connect to your server. These variables are:
 ``
     $serverName = "localhost"; // Ip address to website - must be public IP
@@ -25,6 +26,8 @@ There are a few things you need to do to set this up.
     $dbName = "artwork";       // Database name
 ``
 * Once you've changed these variables to the correct infomation, load up the website and type a random email and password into the signin form. this will automatically tigger the creation of the tables needed to run this and a user with the username "root@root.com" and the password "root" to log in with.
+
+You also need to go into the header.php file and change the value of the javascript variable ``mapAccessToken`` to a token you have generated via your Mapbox.com account.
 
 ## Unity3D Usage
 To use with Unity3D import the package into your project and attach the *'ArtworkResponseClient'* script to an empty gameObject. You only need one of these per the project.
@@ -57,20 +60,22 @@ To be able to insert data into the SQL table, you will need to copy and paste th
 
 # Screenshots
 
-![](ReadMe_Assets/loginscreen.PNG)
-*(Above) The login screen.
+![](ReadMe_Assets/loginscreen.PNG)  
+*(Above) The login screen.  
   
-![](ReadMe_Assets/response_projectoverview.png)
-*(Above) The project overview window. 
+![](ReadMe_Assets/DashboardPage.PNG)  
+*(Above) The Dashboard page which the user lands on when logged in. The map shows all of the locations of every project the users have added to the database.   
+![](ReadMe_Assets/response_projectoverview.png)  
+*(Above) The project overview window.  
 
-![](ReadMe_Assets/response_users.png)
-*(Above) The user screen.
+![](ReadMe_Assets/response_users.png)  
+*(Above) The user screen.  
   
-![](ReadMe_Assets/response_projectview1.png)
-*(Above) A project screen - The top section, showing a map of where the artwork is located and infomation about it.
+![](ReadMe_Assets/response_projectview1.png)  
+*(Above) A project screen - The top section, showing a map of where the artwork is located and infomation about it.  
   
-![](ReadMe_Assets/response_projectview2.png)
-*(Above) A project screen - Here you define the variables you wish to track.
+![](ReadMe_Assets/response_projectview2.png)  
+*(Above) A project screen - Here you define the variables you wish to track.  
   
-![](ReadMe_Assets/response_projectview3.png)  
-*(Above) A project screen - What the default table looks like with infomation in it.
+![](ReadMe_Assets/response_projectview3.png)    
+*(Above) A project screen - What the default table looks like with infomation in it.  

@@ -183,7 +183,19 @@ body{
 
 .fa-icon {color: red;}
 
+#dashboard-cardSection .uk-card{
+	float:left;
+	margin: 20px;
+	margin-top:0px !important;
+}
 
+.dashboard-cardCounterNum{
+
+	    font-size: 6.625rem;
+    margin-top: 0px;
+    text-align: center;
+}
+}
 
 
 

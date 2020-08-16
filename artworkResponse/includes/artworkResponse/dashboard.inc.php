@@ -13,14 +13,7 @@ if(isset($_POST['refreshPins'])){
 		mysqli_stmt_execute($stmt);
 
 	}
-
-
 */
-
-
-
-	//Go through every project within the projects table, check if it's data table has had an entry within the last 15 minutes
-	//If it has then set as being online, else set as being offline. This changes colours of pins 
 	$sql = "SELECT * FROM projects";
  	$result = mysqli_query($conn, $sql);
  	if (mysqli_num_rows($result) > 0) {

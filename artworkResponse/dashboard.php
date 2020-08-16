@@ -12,23 +12,64 @@
 
 	<main id="dashboard-main">
 
-<div id='map' style='height: 300px;'></div>
+		<div id='map' style='height: 50vh;'></div>
 
 
-		<div id="">
-			<h2>dashboard</h2>
-
-			<div>
-				<form action="includes/artworkResponse/dashboard.inc.php" method="post">
-					<button name="refreshPins" class="uk-button uk-button-default">Refresh Pins</button>
-				</form>
+		<div id="dashboard-undermap">
+			<h1 class="uk-heading-divider" style="margin-left:15px;">Dashboard</h1>
+			<br/>
+			<div id="dashboard-cardSection">
+			<div class="uk-card uk-card-default" style="width:fit-content;">
+				<div class="uk-card-body">
+					<h3 class="uk-card-title">Projects Online</h3>
+					<h2 id="dashboard-projectsOnlineNum" class="dashboard-cardCounterNum"></h2>
+					
+				</div>
 			</div>
-
+			<div class="uk-card uk-card-default" style="width:fit-content;">
+				<div class="uk-card-body">
+					<h3 class="uk-card-title">Projects Offline</h3>
+					<h1 id="dashboard-projectsOfflineNum" class="dashboard-cardCounterNum"></h1>
+					
+				</div>
+			</div>
+			<div class="uk-card uk-card-secondary" style="width:fit-content;">
+				<div class="uk-card-body">
+					<h3 class="uk-card-title">Settings</h3>
+					<h4>Refresh Settings:</h4>
+					<p id="dashboard-refreshcountdown">Automatic Refresh In 900 Seconds. </p>
+					<form id="dashboard-refreshPinsForm" action="includes/artworkResponse/dashboard.inc.php" method="post">
+						<button name="refreshPins" class="uk-button uk-button-default">Refresh Now</button>
+					</form>
+				</div>
+			</div>
+		</div>
+			
 		</div>
 	</main>
 		
-	
 <script>
+var timerDefault = 900000; // 15mins in ms
+const startedTime = Date.now() + timerDefault;
+var countdowntext = document.getElementById("dashboard-refreshcountdown");
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = Date.now();
+  var millis = (startedTime-now);
+  var countdown =  Math.floor(millis / 1000);
+
+  countdowntext.innerHTML = "Automatic Refresh In " + countdown+ " Seconds.";
+  if(countdown <= 1){
+  	document.getElementById("dashboard-refreshPinsForm").submit();
+  }
+  }, 1000);
+
+
+</script>
+<script>
+var projectsOnline = 0;
+var projectsOffline = 0;
 mapboxgl.accessToken = mapAccessToken;
 var map = new mapboxgl.Map({
 container: 'map',
@@ -49,8 +90,10 @@ if (mysqli_num_rows($result) > 0) {
 	   echo "var el = document.createElement('div');";
 	   		if($row["online"] == true){
 				echo "el.className = 'marker';";
+				echo "projectsOnline = projectsOnline + 1;";
 			}else{
 				echo "el.className = 'marker marker-notactive';";
+				echo "projectsOffline = projectsOffline + 1;";
 			}
 			echo "new mapboxgl.Marker(el)
 			.setLngLat([".$row["projectLongitude"].", ".$row["projectLatitude"]."])
@@ -65,7 +108,8 @@ if (mysqli_num_rows($result) > 0) {
 
 ?>
 
-
+document.getElementById('dashboard-projectsOnlineNum').innerHTML = projectsOnline;
+document.getElementById('dashboard-projectsOfflineNum').innerHTML = projectsOffline;
 //TODO make map go through every project entry, make a marker for its location and change the colour of the marker depending on if its online of offline 
 /*
 new Marker([0, 51.4934], {

@@ -2,7 +2,10 @@
 	require "header.php";
 ?>
 		
-	
+
+<?php if(isset($_SESSION['userID'])){ header("Location: dashboard.php"); exit(); } ?>
+
+
 		<div id="homepage-login">
 		
 		<!-- <?php

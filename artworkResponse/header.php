@@ -21,7 +21,7 @@ session_start();
 		<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
 		<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
 		<script>
-			var mapAccessToken = "pk.eyJ1IjoiaGFudG9vIiwiYSI6ImNrY2k1MHdqNzE1eGkyeHBmaW5vdnRpcjUifQ.tOAYLYHdrTElQa4UhaMIBw";
+			var mapAccessToken = "[INSERT MAPBOX TOKEN HERE]";
 		</script>
 
 		<!-- JQUERY -->
