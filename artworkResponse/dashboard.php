@@ -39,7 +39,7 @@
 					<h4>Refresh Settings:</h4>
 					<p id="dashboard-refreshcountdown">Automatic Refresh In 900 Seconds. </p>
 					<form id="dashboard-refreshPinsForm" action="includes/artworkResponse/dashboard.inc.php" method="post">
-						<button name="refreshPins" class="uk-button uk-button-default">Refresh Now</button>
+						<button id="refreshPins" name="refreshPins" class="uk-button uk-button-default">Refresh Now</button>
 					</form>
 				</div>
 			</div>
@@ -61,7 +61,7 @@ var x = setInterval(function() {
 
   countdowntext.innerHTML = "Automatic Refresh In " + countdown+ " Seconds.";
   if(countdown <= 1){
-  	document.getElementById("dashboard-refreshPinsForm").submit();
+  	document.getElementById('refreshPins').click();
   }
   }, 1000);
 
